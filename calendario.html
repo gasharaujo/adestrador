@@ -4,11 +4,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script>
-			
+			function Exemplo() {
+				var registros = JSON.parse(localStorage.getItem('calendario'));
+				
+				localStorage.setItem('calendario', JSON.stringify(registros));
+			}
 		</script>
 	</head>
 	<body>
-		<div class="container" style="padding-top: 100px;">
+		<div class="container" style="padding-top: 20px;">
 			<div class="row">
 				<div class="col-sm-1"></div>
 				<div class="col-sm-10">
@@ -23,47 +27,52 @@
 							</thead>
 							<tbody>
 								<tr>
-									<td>
-										<input type="text" id="Cachorro" class="form-control" placeholder="Cachorro" oninput="filtrarRegistros()">
-									</td>
-									<td>
-										<input type="date" id="Nome" class="form-control" placeholder="Nome" oninput="filtrarRegistros()">
-									</td>
-									<td>
-										<input type="text" id="Raça" class="form-control" placeholder="Raça" oninput="filtrarRegistros()">
-									</td>
+									<td><input type="text" id="Nome" class="form-control" placeholder="Nome" oninput="filtrarRegistros()"></td>
+									<td><input type="date" id="Data" class="form-control" placeholder="Data" oninput="filtrarRegistros()"></td>
+									<td><input type="text" id="horario" class="form-control" placeholder="Raça" oninput="filtrarRegistros()"></td>
 								</tr>
 								<tr>
-									<td colspan="4">
-										<button type="button" class="btn btn-primary form-control" onclick="adicionar()" style="margin: 5px">Adicionar</button>
-									</td>
+									<td class="text-center">Segunda</td>
+									<td colspan="2" class="text-center"><button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#myModal" onclick="info(0)" >Abrir</button></td>
 								</tr>
 								<tr>
-									<td colspan="2">
-										<button type="button" class="btn btn-primary form-control" onclick="exportar()" style="padding: 5px">Exportar</button>
-									</td>
-									<td colspan="2">
-										<button type="button" class="btn btn-primary form-control" onclick="importar()" style="padding: 5px">Inportar</button>
-									</td>
+									<td class="text-center">Terça</td>
+									<td colspan="2" class="text-center"><button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#myModal" onclick="info(0)" >Abrir</button></td>
 								</tr>
-								<!--tr>
-									<td colspan="4">
-									</td>
-								</tr-->
+								<tr>
+									<td class="text-center">Quarta</td>
+									<td colspan="2" class="text-center"><button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#myModal" onclick="info(0)" >Abrir</button></td>
+								</tr>
+								<tr>
+									<td class="text-center">Quinta</td>
+									<td colspan="2" class="text-center"><button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#myModal" onclick="info(0)" >Abrir</button></td>
+								</tr>
+								<tr>
+									<td class="text-center">Sexta</td>
+									<td colspan="2" class="text-center"><button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#myModal" onclick="info(0)" >Abrir</button></td>
+								</tr>
+								<tr>
+									<td class="text-center">Sabado</td>
+									<td colspan="2" class="text-center"><button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#myModal" onclick="info(0)" >Abrir</button></td>
+								</tr>
+								<tr>
+									<td class="text-center">Domingo</td>
+									<td colspan="2" class="text-center"><button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#myModal" onclick="info(0)" >Abrir</button></td>
+								</tr>
+								<tr>
+									<td colspan="2"><button type="button" class="btn btn-primary form-control" onclick="exportar()" style="padding: 5px">Exportar</button></td>
+									<td colspan="2"><button type="button" class="btn btn-primary form-control" onclick="importar()" style="padding: 5px">Inportar</button></td>
+								</tr>
 							</tbody>
 						</form>
 					</table>
 				</div>
 				<div class="col-sm-1"></div>
 			</div>
-			<div class="row">
-					<div class="col-sm-1"></div>
-					<div class="col-sm-10" id="registros"></div>
-					<div class="col-sm-1"></div>
-			</div>
 		</div>
 		<!-- Modal -->
-		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+		<div 
+			class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
