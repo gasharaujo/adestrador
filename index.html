@@ -54,7 +54,7 @@
 								tabela += '<td>' + registro.Cachorro + '</td>';
 								tabela += '<td>' + registro.Raça + '</td>';
 								tabela += '<td class="text-center">';
-								tabela += '<i class="fa fa-trash-o" style="font-size:24px;color:red" onclick="excluirRegistro1(' + i + ')"></i>';
+								tabela += '<i class="fa fa-trash-o" style="font-size:24px;color:red" onclick="excluirRegistro1(' + i + ')"></i>&nbsp&nbsp&nbsp';
 								tabela += '<i class="fa fa-pencil-square-o" style="font-size:24px;color:green" onclick="popup(' + i + ')" data-toggle="modal" data-target="#myModal"></i>';
 								tabela += '</td>';
 								tabela += '</tr>';
@@ -105,7 +105,7 @@
 				return day + '/' + month + '/' + year;
 			}
 			function filtrarRegistros() {
-				var nome = document.getElementById('Nome').value.toLowerCase();
+				var Nome = document.getElementById('Nome').value.toLowerCase();
 				var Cachorro = document.getElementById('Cachorro').value.toLowerCase();
 				var Raça = document.getElementById('Raça').value.toLowerCase();
 				// Obtenha os registros do armazenamento local
@@ -135,7 +135,7 @@
 						tabela += '<td>' + registro.Cachorro + '</td>';
 						tabela += '<td>' + registro.Raça + '</td>';
 						tabela += '<td class="text-center">';
-						tabela += '<i class="fa fa-trash-o" style="font-size:24px;color:red border-right:5px" onclick="excluirRegistro1(' + i + ')"></i>';
+						tabela += '<i class="fa fa-trash-o" style="font-size:24px;color:red margin-right:24px" onclick="excluirRegistro1(' + i + ')"></i>';
 						tabela += '<i class="fa fa-pencil-square-o" style="font-size:24px; color:green" onclick="popup(' + i + ')" data-toggle="modal" data-target="#myModal"></i>';
 						tabela += '</td>';
 						tabela += '</tr>';
@@ -407,7 +407,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-						<button type="button" class="btn btn-primary" onclick="excluirRegistro()" data-dismiss="modal">Confirmar</button>
+						<button type="button" class="btn btn-danger" onclick="excluirRegistro()" data-dismiss="modal">Confirmar</button>
 					</div>
 				</div>
 			</div>
