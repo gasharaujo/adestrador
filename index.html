@@ -321,7 +321,9 @@
 				};
 				leitor.readAsDataURL(arquivo);
 			}
-
+			function AulasH() {
+				window.location.href = "calendario.html";
+			}
 		</script>
 	</head>
 	<body>
@@ -333,9 +335,9 @@
 						<form>
 							<thead>
 								<tr>
-									<th>Nome</th>
-									<th>Cachorro</th>
-									<th>Raça</th>
+									<th class="text-center">Nome</th>
+									<th class="text-center">Cachorro</th>
+									<th class="text-center">Raça</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -353,6 +355,11 @@
 								<tr>
 									<td colspan="4">
 										<button type="button" class="btn btn-primary form-control" onclick="adicionar()" style="margin: 5px">Adicionar</button>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="4">
+										<button type="button" class="btn btn-primary form-control" onclick="AulasH()">Aulas Semana</button>
 									</td>
 								</tr>
 								<tr>
@@ -395,9 +402,9 @@
 							<table class="table">
 								<thead>
 									<tr>
-										<th>Nome</th>
-										<th>Cachorro</th>
-										<th>Raça</th>
+										<th class="text-center">Nome</th>
+										<th class="text-center">Cachorro</th>
+										<th class="text-center">Raça</th>
 									</tr>
 								</thead>
 								<tbody>

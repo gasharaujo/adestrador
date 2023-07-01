@@ -1,0 +1,94 @@
+﻿<html>
+	<head>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script>
+			
+		</script>
+	</head>
+	<body>
+		<div class="container" style="padding-top: 100px;">
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-10">
+					<table class="table">
+						<form>
+							<thead>
+								<tr>
+									<th>Pessoa</th>
+									<th>Data</th>
+									<th>horario</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type="text" id="Cachorro" class="form-control" placeholder="Cachorro" oninput="filtrarRegistros()">
+									</td>
+									<td>
+										<input type="date" id="Nome" class="form-control" placeholder="Nome" oninput="filtrarRegistros()">
+									</td>
+									<td>
+										<input type="text" id="Raça" class="form-control" placeholder="Raça" oninput="filtrarRegistros()">
+									</td>
+								</tr>
+								<tr>
+									<td colspan="4">
+										<button type="button" class="btn btn-primary form-control" onclick="adicionar()" style="margin: 5px">Adicionar</button>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<button type="button" class="btn btn-primary form-control" onclick="exportar()" style="padding: 5px">Exportar</button>
+									</td>
+									<td colspan="2">
+										<button type="button" class="btn btn-primary form-control" onclick="importar()" style="padding: 5px">Inportar</button>
+									</td>
+								</tr>
+								<!--tr>
+									<td colspan="4">
+									</td>
+								</tr-->
+							</tbody>
+						</form>
+					</table>
+				</div>
+				<div class="col-sm-1"></div>
+			</div>
+			<div class="row">
+					<div class="col-sm-1"></div>
+					<div class="col-sm-10" id="registros"></div>
+					<div class="col-sm-1"></div>
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<center style="padding-top: 50px;"><h3>Comentario</h3></center>
+					<div class="modal-body">
+						<div style="padding-top: 50px; padding-bottom:100px">
+							<button type="button" style="margin-bottom:10px" class="btn btn-primary form-control" onclick="saveComment()">Salvar</button>
+							<p><textarea class="form-control" id="commentTxt"></textarea></p>
+							<input type="hidden" id="idComment" />
+							<button type="button" class="btn btn-secondary form-control" data-dismiss="modal">Fechar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			// Exiba os registros armazenados ao carregar a página
+			window.onload = exibirRegistros;
+		</script>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	</body>
+</html>
