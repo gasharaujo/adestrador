@@ -54,7 +54,7 @@
 								tabela += '<td>' + registro.Cachorro + '</td>';
 								tabela += '<td>' + registro.Raça + '</td>';
 								tabela += '<td class="text-center">';
-								tabela += '<i class="fa fa-trash-o" style="font-size:24px;color:red" onclick="excluirRegistro(' + i + ')"></i>';
+								tabela += '<i class="fa fa-trash-o" style="font-size:24px;color:red" onclick="excluirRegistro1(' + i + ')"></i>';
 								tabela += '<i class="fa fa-pencil-square-o" style="font-size:24px;color:green" onclick="popup(' + i + ')" data-toggle="modal" data-target="#myModal"></i>';
 								tabela += '</td>';
 								tabela += '</tr>';
@@ -75,20 +75,26 @@
 				exibirRegistros();
 				}
 			}
+			var idDel = 0;
 			// Função para excluir um registro
-			function excluirRegistro(rowIndex) {
+			function excluirRegistro() {
 				// Obtenha os registros do armazenamento local
 				var registros = localStorage.getItem('registros');
 				// Verifique se existem registros
 				if (registros) {
 				registros = JSON.parse(registros);
 				// Remova o registro do array
-				registros.splice(rowIndex, 1);
+				registros.splice(idDel, 1);
 				// Atualize o armazenamento local com os registros atualizados
 				localStorage.setItem('registros', JSON.stringify(registros));
 				// Atualize a exibição da lista de registros
 				exibirRegistros();
 				}
+			}
+			function excluirRegistro1(i) {
+				var modal = new bootstrap.Modal(document.getElementById('certezaModal'));
+				modal.show();
+				idDel = i;
 			}
 			// Função para filtrar os registros com base nos campos preenchidos
 			function formatDate(dateString) {
@@ -129,7 +135,7 @@
 						tabela += '<td>' + registro.Cachorro + '</td>';
 						tabela += '<td>' + registro.Raça + '</td>';
 						tabela += '<td class="text-center">';
-						tabela += '<i class="fa fa-trash-o" style="font-size:24px;color:red border-right:5px" onclick="excluirRegistro(' + i + ')"></i>';
+						tabela += '<i class="fa fa-trash-o" style="font-size:24px;color:red border-right:5px" onclick="excluirRegistro1(' + i + ')"></i>';
 						tabela += '<i class="fa fa-pencil-square-o" style="font-size:24px; color:green" onclick="popup(' + i + ')" data-toggle="modal" data-target="#myModal"></i>';
 						tabela += '</td>';
 						tabela += '</tr>';
@@ -327,7 +333,7 @@
 		</script>
 	</head>
 	<body style="background-color: #b3b4b9">
-		<div class="container" style="padding-top: 20px;">
+		<div class="container" style="padding-top: 40px;">
 			<div class="row">
 				<div class="col-sm-1"></div>
 				<div class="col-sm-10" style="background-color: #cdd6e1">
@@ -387,11 +393,30 @@
 			</div>
 		</div>
 		<!-- Modal -->
+		<div class="modal fade" id="certezaModal" tabindex="-1" aria-labelledby="certezaModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="certezaModalLabel">Popup de Certeza</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>Você tem certeza?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-primary" onclick="excluirRegistro()" data-dismiss="modal">Confirmar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Título do Modal</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
