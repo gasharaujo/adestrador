@@ -480,61 +480,66 @@
 										<td><input type="text" id="CachorroMod" class="form-control" placeholder="Cachorro"></td>
 										<td><input type="text" id="RaçaMod" class="form-control" placeholder="Raça"></td>
 									</tr>
-									<tr class="text-center">
-										<td colspan="3" class="text-center">
-											<img id="modFoto" 
-												src="icone em base64" 
-											alt="Imagem Base64" onclick="selecionarImagem()" style="max-height: 200px;"/>
-											<input type="file" id="input-imagem" style="display: none" onchange="carregarImagem(event)">
-										<td>
-									</tr>
-									<tr >
-										<td colspan="3" class="text-center">
-											<embed id="modContratoPDF" hidden
-												src="" onclick="selecionarImgPdf()"
-											/>
-											<img id="modContrato"
-												src="icone em base64"
-											alt="Imagem Base64" onclick="selecionarImgPdf()" style="max-height: 200px;"/>
-											<input type="file" id="input-contrato" style="display: none" onchange="carregarImgPdf(event)">
-											<input type="hidden" id="PDFval" value="">
-										<td>
-										<script>
-											function selecionarImgPdf() {
-												document.getElementById('input-contrato').click();
-											}
-											// Função para carregar a nova imagem selecionada
-											function carregarImgPdf(event) {
-												var arquivo = event.target.files[0];
-												var leitor = new FileReader();
-
-												leitor.onload = function (e) {
-													var extensao = arquivo.name.split('.').pop().toLowerCase();
-													console.log(extensao);
-													} else {
-													if (extensao === 'pdf') {
-														document.getElementById('modContrato').src = //icone em base64
-														// Se o arquivo for uma imagem, exibe a imagem
-														document.getElementById('modContrato').src = e.target.result;
-													}
-													document.getElementById('PDFval').value = e.target.result;
-												};
-												leitor.readAsDataURL(arquivo);
-											}
-										</script>
-									</tr>
-									<tr>
-										<td colspan="3">
-											<button type="button" class="btn btn-primary form-control" onclick="adicionarAula()" style="margin: 5px" hidden>abrir PDF</button>
-										<td>
-									</tr>
-									<tr>
-										<td colspan="3">
-											<button type="button" class="btn btn-primary form-control" onclick="adicionarAula()" style="margin: 5px">Adicionar Aula</button>
-											<input type="hidden" id="sizeMod" />
-										<td>
-									</tr>
 								</tbody>
+							</table>
+							<div class="container">
+								<div class="row">
+									<div class="col-sm text-center">
+										<img id="modFoto" 
+											src="icone em base64" 
+											alt="Imagem Base64" onclick="selecionarImagem()" style="max-height: 200px;"/>
+										<input type="file" id="input-imagem" style="display: none" onchange="carregarImagem(event)">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm text-center">
+										<embed id="modContratoPDF" hidden
+											src="" onclick="selecionarImgPdf()"
+										/>
+										<img id="modContrato"
+											src="icone em base64"
+										alt="Imagem Base64" onclick="selecionarImgPdf()" style="max-height: 200px;"/>
+										<input type="file" id="input-contrato" style="display: none" onchange="carregarImgPdf(event)">
+										<input type="hidden" id="PDFval" value="">
+									</div>
+								</div>
+
+								<script>
+									function selecionarImgPdf() {
+										document.getElementById('input-contrato').click();
+									}
+									// Função para carregar a nova imagem selecionada
+									function carregarImgPdf(event) {
+										var arquivo = event.target.files[0];
+										var leitor = new FileReader();
+
+										leitor.onload = function (e) {
+											var extensao = arquivo.name.split('.').pop().toLowerCase();
+											console.log(extensao);
+											} else {
+											if (extensao === 'pdf') {
+												document.getElementById('modContrato').src = //icone em base64
+												// Se o arquivo for uma imagem, exibe a imagem
+												document.getElementById('modContrato').src = e.target.result;
+											}
+											document.getElementById('PDFval').value = e.target.result;
+										};
+										leitor.readAsDataURL(arquivo);
+									}
+								</script>
+								<input type="hidden" id="sizeMod" />
+								<div class="row">										
+									<input type="hidden" id="sizeMod" />
+									<div class="col-sm">
+										<button type="button" class="btn btn-primary form-control" onclick="adicionarAula()" style="margin: 5px">Adicionar Aula</button>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm"><button type="button" class="btn btn-warning form-control" onclick="adicionarAula()" style="margin: 5px">Premiun</button></div>
+									<div class="col-sm"><button type="button" class="btn btn-secondary form-control" onclick="adicionarAula()" style="margin: 5px">normal</button></div>
+								</div>
+							</div>
+							<table class="table">
 								<thead>
 									<tr>
 										<th style="width: 10px">ID</th>
