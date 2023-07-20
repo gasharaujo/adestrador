@@ -406,23 +406,19 @@
 
 
 			function comment(id) {
-				function incrementarEstoque(index) {
-					let idM = document.getElementById("idMod").value;
-					let reg = JSON.parse(localStorage.getItem('registros'));
-					let registros = (reg[idM].Aulas[id].comment) ? reg[idM].Aulas[id].comment : "";
-					document.getElementById("commentTxt").innerHTML = registros;
-					document.getElementById("idComment").value = id;
-				}
+				let idM = document.getElementById("idMod").value;
+				let reg = JSON.parse(localStorage.getItem('registros'));
+				let registros = (reg[idM].Aulas[id].comment) ? reg[idM].Aulas[id].comment : "";
+				document.getElementById("commentTxt").value = registros;
+				document.getElementById("idComment").value = id;
 			}
 
-			function saveComment(id) {
-				function incrementarEstoque(index) {
-					let idM = document.getElementById("idMod").value;
-					let reg = JSON.parse(localStorage.getItem('registros'));
-					let registros = (reg[idM].Aulas[id].comment) ? reg[idM].Aulas[id].comment : "";
-					document.getElementById("commentTxt").innerHTML = registros;
-					document.getElementById("idComment").value = id;
-				}
+			function saveComment() {
+				let id = document.getElementById("idComment").value;
+				let idM = document.getElementById("idMod").value;
+				let reg = JSON.parse(localStorage.getItem('registros'));
+				reg[idM].Aulas[id].comment = document.getElementById("commentTxt").value;
+				localStorage.setItem('registros', JSON.stringify(reg));
 			}
 
 			function trCor(id, valor) {
