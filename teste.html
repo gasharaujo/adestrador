@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload de Arquivo</title>
+    <script>
+        function uploadFile() {
+            var fileInput = document.getElementById('fileInput');
+            var file = fileInput.files[0];
+
+            var formData = new FormData();
+            formData.append('arquivo', file);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/upload', true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert('Arquivo enviado com sucesso!');
+                } else {
+                    alert('Falha ao enviar o arquivo.');
+                }
+            };
+            xhr.send(formData);
+        }
+    </script>
+</head>
+<body>
+    <h1>Upload de Arquivo</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="arquivo">
+        <button type="button" onclick="uploadFile()">Enviar</button>
+    </form>
+</body>
+</html>
