@@ -4,6 +4,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script>
+			var tamAula = 0;
 			// Função para adicionar os valores do formulário ao armazenamento local
 			function adicionar() {
 					// Obtenha os valores dos campos de entrada
@@ -225,6 +226,7 @@
 				let AulasR = registros[i].Aulas;
 				let tabela = '';
 				if(typeof AulasR == "object"){
+					tamAula = AulasR.length;
 					for (var j = 0; j < AulasR.length; j++) {
 						let registro = AulasR[j];
 						tabela += '';
@@ -285,6 +287,11 @@
 				let newRow = document.createElement("tr");
 				newRow.style.backgroundColor = "#fbe985";
 				newRow.id = "tr" + x;
+
+				let indexCell = document.createElement("td");
+				indexCell.textContent = parseInt(x) + 1;
+				newRow.appendChild(indexCell);
+
 
 				let dataCell = document.createElement("td");
 				let dataInput = document.createElement("input");
