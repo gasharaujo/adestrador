@@ -330,6 +330,78 @@
 
 				document.getElementById("Aulas").appendChild(newRow);
 			}
+			
+			function setAulas(qtd) {
+				let x = document.getElementById("sizeMod").value;
+				document.getElementById("sizeMod").value = qtd;
+
+				if (x > qtd) {
+					let tableBody = document.getElementById("Aulas");
+					let rows = tableBody.getElementsByTagName("tr");
+
+					if (rows.length > 10) {
+						let rowsToDelete = [];
+						for (let i = 10; i < rows.length; i++) {
+							let dataInput = rows[i].querySelector("input[id='dataAula[]']");
+							if (dataInput && dataInput.value === "") {
+								rowsToDelete.push(rows[i]);
+							}
+						}
+
+						for (let i = 0; i < rowsToDelete.length; i++) {
+							tableBody.removeChild(rowsToDelete[i]);
+						}
+					}
+				} else {
+					for (let i = x; i < qtd; i++) {
+						let newRow = document.createElement("tr");
+						newRow.style.backgroundColor = "#fbe985";
+						newRow.id = "tr" + i;
+
+						let indexCell = document.createElement("td");
+						indexCell.textContent = parseInt(i) + 1;
+						newRow.appendChild(indexCell);
+
+						let dataCell = document.createElement("td");
+						let dataInput = document.createElement("input");
+						dataInput.type = "date";
+						dataInput.id = "dataAula[]";
+						dataInput.className = "form-control .w-auto";
+						dataInput.placeholder = "dataAula";
+						dataCell.appendChild(dataInput);
+						newRow.appendChild(dataCell);
+
+						let statusCell = document.createElement("td");
+						statusCell.className = "text-center";
+						let statusInput = document.createElement("input");
+						statusInput.type = "checkbox";
+						statusInput.id = "status[]";
+						statusInput.className = "form-check-input .w-auto";
+						statusInput.placeholder = "Status";
+						statusInput.onchange = function() {
+							trCor(x, this);
+						};
+						statusCell.appendChild(statusInput);
+						newRow.appendChild(statusCell);
+
+						let commentCell = document.createElement("td");
+						let commentIcon = document.createElement("i");
+						commentIcon.className = "fa fa-pencil-square-o";
+						commentIcon.style.fontSize = "24px";
+						commentIcon.style.color = "green";
+						commentIcon.onclick = function() {
+							comment(x);
+						};
+						commentIcon.setAttribute("data-toggle", "modal");
+						commentIcon.setAttribute("data-target", "#myModal2");
+						commentCell.appendChild(commentIcon);
+						newRow.appendChild(commentCell);
+
+						document.getElementById("Aulas").appendChild(newRow);
+					}
+				}
+			}
+
 
 
 
@@ -535,8 +607,8 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-sm"><button type="button" class="btn btn-warning form-control" onclick="adicionarAula()" style="margin: 5px">Premiun</button></div>
-									<div class="col-sm"><button type="button" class="btn btn-secondary form-control" onclick="adicionarAula()" style="margin: 5px">normal</button></div>
+									<div class="col-sm"><button type="button" class="btn btn-warning form-control" onclick="setAulas(18)" style="margin: 5px">Premiun</button></div>
+									<div class="col-sm"><button type="button" class="btn btn-secondary form-control" onclick="setAulas(10)" style="margin: 5px">normal</button></div>
 								</div>
 							</div>
 							<table class="table">
