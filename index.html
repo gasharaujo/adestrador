@@ -229,6 +229,7 @@
 						let registro = AulasR[j];
 						tabela += '';
 						tabela += '<tr style="background-color: #'+(registro.status === "checked"?'00FF00':'fbe985')+'" id="tr'+j+'">';
+						tabela += '<td style="width: 10px">'+(j+1)+'</td>';
 						tabela += '<td><input type="date" value="' + registro.dataAula + '" id="dataAula[]" class="form-control .w-auto" placeholder="dataAula"></td>';
 						tabela += '<td class="text-center"> <input type="checkbox" id="status[]" '+(registro.status)+' class="form-check-input .w-auto" placeholder="Status" onchange="trCor('+j+', this)">';
 						tabela += '<td><i class="fa fa-pencil-square-o" style="font-size:24px; color:green" onclick="comment('+j+')" data-toggle="modal" data-target="#myModal2"></i></td>';
@@ -529,6 +530,7 @@
 								</tbody>
 								<thead>
 									<tr>
+										<th style="width: 10px">ID</th>
 										<th>Aula</th>
 										<th>Status</th>
 										<th>Notas</th>
@@ -536,6 +538,7 @@
 								</thead>
 								<tbody id="Aulas">						
 									<tr style="background-color: #fbe985" id="tr0">
+										<td>0</td>
 										<td><input type="date" id="dataAula[]" class="form-control .w-auto" placeholder="dataAula"></td>
 										<td class="text-center"> <input type="checkbox" id="status[]" class="form-check-input .w-auto" placeholder="Status" onchange="trCor(0, this)"> </td>
 										<td><i class="fa fa-pencil-square-o" style="font-size:24px; color:green" onclick="comment(0)" data-toggle="modal" data-target="#myModal2"></i></td>
