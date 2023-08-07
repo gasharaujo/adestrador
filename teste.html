@@ -3,31 +3,91 @@
 <head>
     <title>Upload de Arquivo</title>
     <script>
+        let uploadedFileData = null;
+
         function uploadFile() {
-            var fileInput = document.getElementById('fileInput');
-            var file = fileInput.files[0];
+            let inputElement = document.getElementById('arquivo');
+            let arquivo = inputElement.files[0];
 
-            var formData = new FormData();
-            formData.append('arquivo', file);
+            if (!arquivo) {
+                alert('Por favor, selecione um arquivo antes de enviar.');
+                return;
+            }
 
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/upload', true);
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    alert('Arquivo enviado com sucesso!');
-                } else {
-                    alert('Falha ao enviar o arquivo.');
-                }
+            let reader = new FileReader();
+
+            reader.onload = function (event) {
+                uploadedFileData = event.target.result;
+                localStorage.setItem('Arquivo', uploadedFileData);
+                displayPreview(uploadedFileData);
             };
-            xhr.send(formData);
+
+            reader.readAsDataURL(arquivo);
+        }
+
+        function loadFile() {
+            let saida = localStorage.getItem('Arquivo');
+            if (saida) {
+                // Exibir arquivo em nova guia
+                displayFile(saida);
+            } else {
+                alert('Nenhum arquivo foi carregado ainda.');
+            }
+        }
+
+        function displayPreview(dataURL) {
+            let mimeType = dataURL.split(',')[0].split(':')[1].split(';')[0];
+            let url = URL.createObjectURL(base64ToBlob(dataURL));
+            let previewElement = document.getElementById('saida');
+
+            if (mimeType.includes('image')) {
+                previewElement.innerHTML = '<img src="' + url + '" style="max-width: 100%; max-height: 100%;" />';
+            } else if (mimeType === 'application/pdf') {
+                previewElement.innerHTML = '<embed width="100%" height="100%" src="' + url + '" type="application/pdf" />';
+            }
+        }
+
+        function displayFile(dataURL) {
+            let mimeType = dataURL.split(',')[0].split(':')[1].split(';')[0];
+            let blob = base64ToBlob(dataURL);
+
+            let url = URL.createObjectURL(blob);
+            window.open(url, '_blank');
+        }
+
+        function base64ToBlob(base64) {
+            let byteCharacters = atob(base64.split(',')[1]);
+            let byteNumbers = new Array(byteCharacters.length);
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            let byteArray = new Uint8Array(byteNumbers);
+            return new Blob([byteArray], { type: base64.split(',')[0].split(':')[1].split(';')[0] });
         }
     </script>
 </head>
 <body>
     <h1>Upload de Arquivo</h1>
     <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" id="fileInput" name="arquivo">
+        <input type="file" id="arquivo" name="arquivo">
         <button type="button" onclick="uploadFile()">Enviar</button>
     </form>
+    <br>
+    <div id="saida" style="height: 400px;">
+        <!-- Aqui será exibida a prévia do arquivo carregado -->
+    </div>
+    <br>
+    <button type="button" onclick="loadFile()">Abrir</button>
+    <button type="button" onclick="previewStoredFile()">Preview</button>
+    <script>
+        function previewStoredFile() {
+            let storedFileData = localStorage.getItem('Arquivo');
+            if (storedFileData) {
+                displayPreview(storedFileData);
+            } else {
+                alert('Nenhum arquivo foi carregado ainda.');
+            }
+        }
+    </script>
 </body>
 </html>
